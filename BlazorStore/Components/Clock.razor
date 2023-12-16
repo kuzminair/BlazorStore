@@ -1,0 +1,22 @@
+﻿@page "/clock"
+@rendermode InteractiveServer
+
+@if (timer != null)
+{
+    <p style="color: white">Дата: @time.ToString("dd.MM.yyyy")</p>
+    <p style="color: white">Время: @time.ToString("HH.MM.ss")</p>
+}
+@code {
+    System.Threading.Timer? timer;
+    DateTime time = DateTime.Now;
+    private async void SetClock(object stateInfo)
+    {
+        time = DateTime.Now;
+        await InvokeAsync(StateHasChanged);
+    }
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        timer = new System.Threading.Timer(SetClock, new System.Threading.AutoResetEvent(false), 1000, 1000);
+    }
+}

@@ -1,0 +1,25 @@
+﻿@page "/timer"
+@rendermode InteractiveServer
+
+@if (timer != null)
+{
+    <p>@timeRemainder.ToString(@"hh\:mm\:ss")</p>
+}
+@code {
+    System.Threading.Timer? timer;
+    
+    TimeSpan timeRemainder;
+    DateTime timeFinish = DateTime.Now.AddHours(3);
+    
+    private async void SetClock(object stateInfo)
+    {
+        DateTime time = DateTime.Now;
+        timeRemainder = timeFinish - time;
+        await InvokeAsync(StateHasChanged);
+    }
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        timer = new System.Threading.Timer(SetClock, new System.Threading.AutoResetEvent(false), 1000, 1000);
+    }
+}

@@ -1,0 +1,68 @@
+﻿@page "/addItem"
+@rendermode InteractiveServer
+
+<PageTitle>AddItem</PageTitle>
+<h3>Добавление товара</h3>
+<h3></h3>
+<div class="form-group">
+    <label for="name">Наименование</label>
+    <input id="title" class="form-control" @bind="@newName" />
+</div>
+<div class="form-group">
+    <label for="description">Описание: </label>
+    <input id="description" class="form-control" @bind="@newDescription" />
+</div>
+<div class="form-group">
+    <label for="imgPath">Имя картинки: </label>
+    <input id="imgPath" class="form-control" @bind="@newImgPath" />
+</div>
+<div class="form-group">
+    <label for="price">Цена: </label>
+    <input id="price" class="form-control" @bind="@newPrice" />
+</div>
+<div class="form-group">
+    <label for="quantity">Количество товара: </label>
+    <input id="quantity" class="form-control" @bind="@newQuantity" />
+</div>
+<div class="form-group">
+    <label style="color: red">@text</label>
+</div>
+<button class="btn btn-primary" @onclick="CreateItem">Добавить</button>
+@code {
+    string? newName = "";
+    string? newDescription = "";
+    string? newImgPath = "";
+    decimal? newPrice = 0;
+    int? newQuantity = 0;
+    string? text = "";
+
+    public void CreateItem()
+    {
+        if (!string.IsNullOrEmpty(newName) || newPrice != 0 || newQuantity != 0)
+        {
+            // var newItem = new Item
+            //     {
+            //         Id = Item.items.Count + 1,
+            //         Name = newName,
+            //         Description = newDescription,
+            //         imgPath = newImgPath;
+            //         Price = newPrice;
+            //         Quantity = newQuantity;
+            //     };
+
+            // Item.items.Add(newItem);
+            // newName = "";
+            // newDescription = "";
+            // newImgPath = "";
+            // newPrice = 0;
+            // newQuantity = 0;
+            // text = "";
+            text = "Ошибка CS0426: Имя типа __PrivateComponentRenderModeAttributeAttribute не существует в типе AddItem. Не получается создать экземпляр продукта. В коде закомментировано - посмотрите, пожалуйста";
+        }
+        else
+        {
+            text = "Заполните обязательные поля: наименование, цена, количество";
+        }
+    }
+
+}

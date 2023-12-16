@@ -1,0 +1,60 @@
+﻿@page "/catalog"
+@rendermode InteractiveServer
+
+@if (_ok)
+{
+    <div class="form-group">
+        <label style="color: red">Товар @_name добавлен в корзину</label>
+        <button class="btn btn-danger" @onclick="ok">OK</button>
+    </div>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Фото</th>
+            <th>Наименование</th>
+            <th>Описание</th>
+            <th>Цена, рублей</th>
+            <th>Остаток на складе</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Item.items)
+        {
+            <tr>
+                <td>
+                    <a href="productDescription">
+                        <img src="images/@item.imgPath" width="70" height="70" alt="" />
+                    </a>
+                </td>
+                <td>@item.Name</td>
+                <td>@item.Description</td>
+                <td>@item.Price</td>
+                <td>@item.Quantity</td>
+                <td><button class="btn btn-danger" @onclick="()=> buyItem(item.Id)">Купить</button></td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+
+
+
+@code {
+    bool _ok = false;
+    string _name="";
+
+    void buyItem(int itemId)
+    {
+        _ok = true;
+        var item = Item.items.FirstOrDefault(it => it.Id == itemId);
+        if (item != null){
+            _name=item.Name;
+        }
+    }
+    void ok()
+    {
+        _ok = false;
+    }
+}
