@@ -23,7 +23,7 @@
         {
             <tr>
                 <td>
-                    <a href="productDescription">
+                    <a href="productDescription" @onclick="()=> itemDescription(item.Id)">
                         <img src="images/@item.imgPath" width="70" height="70" alt="" />
                     </a>
                 </td>
@@ -51,10 +51,17 @@
         var item = Item.items.FirstOrDefault(it => it.Id == itemId);
         if (item != null){
             _name=item.Name;
+            item.Quantity -= 1;
+            Item.cart.Add(item);
+            }
         }
-    }
-    void ok()
-    {
-        _ok = false;
-    }
+        void ok()
+        {
+            _ok = false;
+
+        }
+        public void itemDescription(int itemId)
+        {
+        Item.itemDescr = Item.items.FirstOrDefault(t => t.Id == itemId);
+        }
 }

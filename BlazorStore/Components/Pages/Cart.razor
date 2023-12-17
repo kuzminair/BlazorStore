@@ -1,0 +1,55 @@
+﻿@page "/cart"
+@rendermode InteractiveServer
+<h3>Корзина</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Фото</th>
+            <th>Наименование</th>
+            <th>Количество</th>
+            <th>Цена, рублей</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Item.cart)
+        {
+            summ+= @item.Price;
+            <tr>
+                <td>
+                    <a href="productDescription">
+                        <img src="images/@item.imgPath" width="70" height="70" alt="" />
+                    </a>
+                </td>
+                <td>@item.Name</td>
+                <td>1</td>
+                <td>@item.Price</td>
+                <td><button class="btn btn-danger" @onclick="()=> deleteItem(item.Id)">Удалить</button></td>
+            </tr>
+
+        }
+    </tbody>
+    <thead>
+        <tr>
+            <th>ИТОГО</th>
+            <th></th>
+            <th></th>
+            <th>@summ</th>
+        </tr>
+    </thead>
+</table>
+
+
+
+@code {
+    decimal summ = 0;
+    void deleteItem(int itemId)
+    {
+        var item = Item.cart.FirstOrDefault(t => t.Id == itemId);
+        if (item != null)
+        {
+            Item.cart.Remove(item);
+            summ = 0;
+        }
+    }
+
+}
