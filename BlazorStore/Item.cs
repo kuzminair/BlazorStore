@@ -8,7 +8,7 @@
         public required string Description { get; set; }
         public Decimal Price { get; set; }
         public int Quantity { get; set; }
-        public Item() { }
+
         public static List<Item> items = new List<Item>()
         {
             new Item {Id=1, Name = "Игрушка1", imgPath = "700.jpg", Description="Новогодняя поделка", Price = 500, Quantity = 12 },
@@ -20,6 +20,5 @@
         {
         };
         public static Item itemDescr = new Item { Id = 0, Name = "", imgPath = "", Description = "", Price = 0, Quantity = 0 };
-
     }
 }

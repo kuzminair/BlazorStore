@@ -1,7 +1,7 @@
 ﻿@page "/addItem"
 @rendermode InteractiveServer
 
-<PageTitle>AddItem</PageTitle>
+<PageTitle>Создать товар</PageTitle>
 <h3>Добавление товара</h3>
 <h3></h3>
 <div class="form-group">
@@ -40,7 +40,7 @@
     {
         if (!string.IsNullOrEmpty(newName) || newPrice != 0 || newQuantity != 0)
         {
-            // var newItem = new Item
+            // var item = new Item
             //     {
             //         Id = Item.items.Count + 1,
             //         Name = newName,
@@ -49,8 +49,7 @@
             //         Price = newPrice;
             //         Quantity = newQuantity;
             //     };
-
-            // Item.items.Add(newItem);
+            // Item.items.Add(item);
             // newName = "";
             // newDescription = "";
             // newImgPath = "";
