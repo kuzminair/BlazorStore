@@ -1,0 +1,52 @@
+﻿@page "/catalogcomponents"
+@using Microsoft.AspNetCore.Components.Web
+@rendermode RenderMode.InteractiveServer
+@inject NavigationManager Navigation
+
+
+
+<h3>Каталог товаров</h3>
+<div style="display :flex; flex-wrap: wrap; margin : 5px">
+    @foreach (var item in Item.items)
+{
+    <div class="itemOne" style="width: 25%; display: flex; flex-direction :column; justify-content: center; margin : 5px; padding :5px; border : 2px dotted green">
+        <a href="productDescription"><img src="images/@item.imgPath" width="80" height="80" alt="" /></a>
+        <a href="productDescription" @onclick="()=> itemDescription(item.Id)">Наименование: @item.Name</a>
+        <h6>Цена: @item.Price рублей </h6>
+        <button class="btn btn-outline-secondary" @onclick="()=>GoToProductDescription(item.Id)">Oписаниe</button>
+        <button class="btn btn-danger" @onclick ="()=>buyItem(item.Id)">Добавить в корзину</button>
+    </div>
+}
+</div>
+
+
+
+
+
+@code {
+
+    void GoToProductDescription(int itemId)
+    {
+        itemDescription(itemId);
+        Navigation.NavigateTo("productDescription");
+    }
+    bool _ok = false;
+    string _name="";
+
+    void buyItem(int itemId)
+    {
+        var item = Item.items.FirstOrDefault(it => it.Id == itemId);
+        if (item != null)
+        {
+            _name = item.Name;
+            item.Quantity -= 1;
+            Item.cart.Add(item);
+        }
+    }
+    public void itemDescription(int itemId)
+    {
+        Item.itemDescr = Item.items.FirstOrDefault(t => t.Id == itemId);
+    }
+    
+
+}

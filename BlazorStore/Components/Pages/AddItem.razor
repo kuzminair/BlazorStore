@@ -28,6 +28,8 @@
     <label style="color: red">@text</label>
 </div>
 <button class="btn btn-primary" @onclick="CreateItem">Добавить</button>
+
+
 @code {
     string? newName = "";
     string? newDescription = "";
@@ -36,27 +38,46 @@
     int? newQuantity = 0;
     string? text = "";
 
-    public void CreateItem()
+    // async Task LoadItems()
+    // {
+    //    var options = new DbContextOptionsBuilder<AppDBContext>()
+    //        .UseSqlite("Data Source=catalogItems.db").Options;
+    //    using (var dbContext = new AppDBContext(options))
+    //    {
+    //        itemsDb = await dbContext.Items.ToListAsync();
+    //    }
+    // }
+
+    public /* async Task */ void CreateItem()
     {
-        if (!string.IsNullOrEmpty(newName) || newPrice != 0 || newQuantity != 0)
+        if (!string.IsNullOrEmpty(newName) && newPrice != 0 && newQuantity != 0)
         {
-            // var item = new Item
-            //     {
-            //         Id = Item.items.Count + 1,
-            //         Name = newName,
-            //         Description = newDescription,
-            //         imgPath = newImgPath;
-            //         Price = newPrice;
-            //         Quantity = newQuantity;
-            //     };
-            // Item.items.Add(item);
-            // newName = "";
-            // newDescription = "";
-            // newImgPath = "";
-            // newPrice = 0;
-            // newQuantity = 0;
-            // text = "";
-            text = "Ошибка CS0426: Имя типа __PrivateComponentRenderModeAttributeAttribute не существует в типе AddItem. Не получается создать экземпляр продукта. В коде закомментировано - посмотрите, пожалуйста";
+        //     var options = new DbContextOptionsBuilder<AppDBContext>()
+        //             .UseSqlite("Data Source=catalogItems.db").Options;
+        //     using (var dbContext = new AppDBContext(options))
+        //     {
+        //         var item = new Item
+        //             {
+        //                     Id = Item.itemsDb.Count + 1,
+        //                     Name = newName,
+        //                     Description = newDescription,
+        //                     imgPath = newImgPath;
+        //                     Price = newPrice;
+        //                     Quantity = newQuantity;
+        //             };
+        //         LoadItems();
+        //         dbContext.Items.Add(item);
+        //         /* await */ dbContext.SaveChanges();
+            
+        //     }
+        // Item.items.Add(item);
+        // newName = "";
+        // newDescription = "";
+        // newImgPath = "";
+        // newPrice = 0;
+        // newQuantity = 0;
+        // text = "";
+        text = "Ошибка CS0426: Имя типа __PrivateComponentRenderModeAttributeAttribute не существует в типе AddItem. Не получается создать экземпляр продукта. В коде закомментировано - посмотрите, пожалуйста";
         }
         else
         {

@@ -1,0 +1,45 @@
+﻿@page "/orders"
+@rendermode InteractiveServer
+<PageTitle>Заказы</PageTitle>
+<h3>Список заказов</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Номер</th>
+            <th>Дата оформления</th>
+            <th>Сумма заказа</th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var order in Order.orderList)
+        {
+            count++;
+            <tr>
+                <td>@count</td>
+                <td>@order.DateCreate.ToString("dd.MM.yyyy")</td>
+                <td>@order.Summ</td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+
+
+
+@code {
+    int count = 0;
+    // List<Order> listOrders = new List<Order>();
+
+    // async Task LoadOrders()
+    // {
+    //     var options = new DbContextOptionsBuilder<AppDBContext>()
+    //         .UseSqlite("Data Source=catalogItems.db").Options;
+    //     using (var dbContext = new AppDBContext(options))
+    //     {
+    //         listOrders = await dbContext.Orders.ToListAsync();
+    //     }
+    // }
+}
